@@ -26,10 +26,16 @@ var questions = [
       correctAns:"half moon on sky with star"
     },
     {
-      Q:"If you have a logo instead of a name, what would it look like?",
+      Q:"If your life was a movie, what songs would be on the soundtrack?",
       Ans:["sunflower","half eaten apple","half moon on sky with star"],
       correctAns:"half moon on sky with star"
     },
+    {
+      Q:"If your life was a movie, what songs would be on the soundtrack?",
+      Ans:["sunflower","half eaten apple","half moon on sky with star"],
+      correctAns:"half moon on sky with star"
+    }
+
   
     /*
       @TODO: write your questions here
@@ -112,21 +118,25 @@ var questions = [
    * @see https://www.w3schools.com/js/js_htmldom_methods.asp
    */
   function getQuestion() {
-  
+
     var currentQuestion = questions[currentQuestionIndex]
     questionsEl.textContent = currentQuestion.Q;
      console.log(currentQuestion);
      currentQuestionIndex +=1
     //  console.log(currentQuestion);
-   
-     for (var i=0; i<currentQuestion.Ans.length; i++){
-  
-      
-  
+    for (var i=0; i<questions.length; i++){
+        console.log(questions[i].Ans);
+      for (var j=0; j<questions[i].Ans.length; j++){
+       
+        var choiceButton = document.createElement("button");
+        choiceButton.textContent = questions[i].Ans[j];
+        choiceButton.classList.add("answers");
+        choiceButton.setAttribute("value",questions[i].Ans[j]);
+        choicesEl.appendChild(choiceButton);
+
      }
+    }
    
-   
-  
     /*
       @TODO: write your function code here
     */

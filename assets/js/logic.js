@@ -37,7 +37,7 @@ var questions = [
 ];
 
 // variables to keep track of quiz state
-var time = questions.length * 1;
+var time = questions.length * 15;
 var currentQuestionIndex = 0;
 var timerId;
 
@@ -112,7 +112,7 @@ function getQuestion() {
   var currentQuestion = questions[currentQuestionIndex];
    console.log(currentQuestion);
 
-   currentQuestionIndex +=1
+  
     questionsEl.textContent = currentQuestion.Q;
     console.log(currentQuestion.Q);
 
@@ -121,7 +121,20 @@ function getQuestion() {
       var choiceButton = document.createElement("button");
       choiceButton.textContent = item;
       console.log(item);
-
+      choiceButton.addEventListener("click",function(evt){
+        console.log(evt.target.value);
+        var correctAns = questions[currentQuestionIndex].correctAns;
+        console.log(correctAns);
+        var currentChoice = evt.target.value;
+        if (currentChoice === correctAns){
+          console.log("You are right!");
+        }
+        else {
+          console.log("oops You are wrong!")
+        }
+        currentQuestionIndex +=1
+        getQuestion();
+      })
       choiceButton.classList.add("answers");
       choiceButton.setAttribute("value", item);
       choicesEl.append(choiceButton);

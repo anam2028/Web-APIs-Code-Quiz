@@ -30,16 +30,17 @@ var questions = [
   },
   {
     Q: "If your life was a movie, what songs would be on the soundtrack?",
-    Ans: ["sunflower", "half eaten apple", "half moon on sky with star"],
-    correctAns: "half moon on sky with star"
+    Ans: ["I heard it through the grapevine","I am sunflower a little funny",  "somebody i used to know"],
+    correctAns: "I heard it through the grapevine"
   }
 
 ];
 
 // variables to keep track of quiz state
-var time = questions.length * 15;
+var time = questions.length * 5;
 var currentQuestionIndex = 0;
 var timerId;
+var score = 0;
 
 /**
  * Variables to reference DOM elements
@@ -63,7 +64,9 @@ var questionsEl = document.getElementById("questions");
 var timerEl = document.getElementById("time");
 var choicesEl = document.getElementById("choices");
 var submitBtn = document.getElementById("submit");
+var wrapper = document.getElementById("wrapper");
 var startBtn = document.getElementById("start");
+
 
 /*
   @TODO: write the rest of your variables here
@@ -110,27 +113,37 @@ function startQuiz() {
   */
 function getQuestion() {
   var currentQuestion = questions[currentQuestionIndex];
-   console.log(currentQuestion);
+  //  console.log(currentQuestion);
 
   
     questionsEl.textContent = currentQuestion.Q;
-    console.log(currentQuestion.Q);
+    // console.log(currentQuestion.Q);
 
     choicesEl.innerHTML = "";
      currentQuestion.Ans.forEach(function(item, i){
       var choiceButton = document.createElement("button");
       choiceButton.textContent = item;
-      console.log(item);
+      // console.log(item);
+
+      // Adding event listner to choice button
+
       choiceButton.addEventListener("click",function(evt){
-        console.log(evt.target.value);
+       
+        // console.log(evt.target.value);
+
+        // Grabing correct answer
+
         var correctAns = questions[currentQuestionIndex].correctAns;
-        console.log(correctAns);
+        // console.log(correctAns);
         var currentChoice = evt.target.value;
         if (currentChoice === correctAns){
           console.log("You are right!");
+          score++;
+          console.log("your score");
         }
         else {
           console.log("oops You are wrong!")
+          time-= 10;
         }
         currentQuestionIndex +=1
         getQuestion();
@@ -138,7 +151,12 @@ function getQuestion() {
       choiceButton.classList.add("answers");
       choiceButton.setAttribute("value", item);
       choicesEl.append(choiceButton);
+      if (currentQuestionIndex === questions.length-1)
+      {
+       console.log("This is the last question and your score is " + score);
+       wrapper.innerHTML="your score is :" + score;
         
+      }
      }) 
 }
 /**
@@ -206,7 +224,7 @@ function clockTick() {
   // end the quiz if the user runs out of time
     time--
     timerEl.textContent = time; 
-    console.log(time);  
+    // console.log(time);  
 
   if (time <= 0) {
     console.log(time);

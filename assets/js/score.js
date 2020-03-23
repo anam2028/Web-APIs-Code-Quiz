@@ -11,12 +11,17 @@
  * @see https://www.w3schools.com/jsref/met_node_appendchild.asp
  * @see https://www.w3schools.com/jsref/met_document_createelement.asp
  */
+var highscores= document.getElementById("highscores");
+  
 function printHighscores() {
   
   /*
     @TODO: write your function code here
   */
-  
+
+ var score = localStorage.getItem("score");
+ highscores.textContent=score;
+
 }
 
 
@@ -35,7 +40,7 @@ function clearHighscores() {
   /*
     @TODO: write the rest of your function code here
   */
-
+localStorage.setItem("score", "");
   // reload window
   window.location.reload();
 

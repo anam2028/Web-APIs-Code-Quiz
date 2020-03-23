@@ -7,7 +7,7 @@ var questions = [
   {
     Q: "What is a quote that inspires you?",
     Ans: ["Go Hard or Go Home", "Life Begins at The End Of Your Comfort Zone", "Fall In Love With Taking Care Of Yourself"],
-    correctAns: "Fall In Love With Taking Care Of Yourself"
+    correctAns: "Life Begins at The End Of Your Comfort Zone"
   },
   {
     Q: "What's Your Favorite TV Show?",
